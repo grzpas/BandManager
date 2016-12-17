@@ -1,0 +1,25 @@
+﻿                                      Umowa dot. usługi muzycznej
+
+Wykonawca: ##band_member##
+reprezentujący zespół Progress Band.
+
+Zleceniodawca: ##client_name##, zamieszkały:  ##client_address##, tel. ##client_phone##.
+
+1. Przedmiotem umowy jest oprawa muzyczna przyjęcia weselnego w miejscowości ##the_city## w sali ##the_place##
+od ##the_date## do godz 5:00 dnia następnego.
+
+2. Wykonawca zobowiązuje się stawić na miejsce uroczystości własnym transportem.
+
+3. Za wykonanie zleconej usługi Wykonawca otrzyma wynagrodzenie po wykonaniu zlecenia w wysokości:
+##the_amount## zł.
+
+4. Wpłacono zadatek w kwocie: ##the_downpayment## zł.
+
+5. Umowę sporządzono w dwóch jednobrzmiących egzemplarzach.
+
+Wykonawca                                                                                              Zamawiający
+
+
+
+Uwagi: 
+##the_remarks##

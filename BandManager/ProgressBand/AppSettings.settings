@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProgressBand" GeneratedClassName="App">
+  <Profiles />
+  <Settings>
+    <Setting Name="HTTP_USER_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GLOBAL\SG0893950</Value>
+    </Setting>
+    <Setting Name="HTTP_USER_PASSWORD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">gpola1234</Value>
+    </Setting>
+    <Setting Name="PROXY_SERVER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">www-ad-proxy.sabre.com</Value>
+    </Setting>
+    <Setting Name="PROXY_PORT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,6 @@
+*.dll
+*.pdb
+*.suo
+*.cache
+**/bin
+**/obj

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<DistanceMatrixResponse>
+  <!--view-source:http://maps.googleapis.com/maps/api/distancematrix/xml?origins=Krakow|Budapest|Split&destinations=Budapest|Split|Tirana&mode=driving&language=en-EN&sensor=false-->
+ <status>OK</status> 
+ <origin_address>Krakw, Poland</origin_address> 
+ <origin_address>Budapest, Hungary</origin_address> 
+ <origin_address>Split, Croatia</origin_address> 
+ <destination_address>Budapest, Hungary</destination_address> 
+ <destination_address>Split, Croatia</destination_address> 
+ <destination_address>Tirana, Albania</destination_address> 
+ <row> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>22474</value> 
+    <text>6 hours 15 mins</text> 
+   </duration> 
+   <distance> 
+    <value>393974</value> 
+    <text>394 km</text> 
+   </distance> 
+  </element> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>44952</value> 
+    <text>12 hours 29 mins</text> 
+   </duration> 
+   <distance> 
+    <value>1198018</value> 
+    <text>1,198 km</text> 
+   </distance> 
+  </element> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>72686</value> 
+    <text>20 hours 11 mins</text> 
+   </duration> 
+   <distance> 
+    <value>1488844</value> 
+    <text>1,489 km</text> 
+   </distance> 
+  </element> 
+ </row> 
+ <row> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>0</value> 
+    <text>1 min</text> 
+   </duration> 
+   <distance> 
+    <value>0</value> 
+    <text>1 m</text> 
+   </distance> 
+  </element> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>25206</value> 
+    <text>7 hours 0 mins</text> 
+   </duration> 
+   <distance> 
+    <value>751337</value> 
+    <text>751 km</text> 
+   </distance> 
+  </element> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>51261</value> 
+    <text>14 hours 14 mins</text> 
+   </duration> 
+   <distance> 
+    <value>1092286</value> 
+    <text>1,092 km</text> 
+   </distance> 
+  </element> 
+ </row> 
+ <row> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>25470</value> 
+    <text>7 hours 5 mins</text> 
+   </duration> 
+   <distance> 
+    <value>744324</value> 
+    <text>744 km</text> 
+   </distance> 
+  </element> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>0</value> 
+    <text>1 min</text> 
+   </duration> 
+   <distance> 
+    <value>0</value> 
+    <text>1 m</text> 
+   </distance> 
+  </element> 
+  <element> 
+   <status>OK</status> 
+   <duration> 
+    <value>33294</value> 
+    <text>9 hours 15 mins</text> 
+   </duration> 
+   <distance> 
+    <value>566798</value> 
+    <text>567 km</text> 
+   </distance> 
+  </element> 
+ </row> 
+</DistanceMatrixResponse> 
