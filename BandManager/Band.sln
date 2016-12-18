@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Tests", "Utils.Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Band.Business.Tests", "Band.Business.Tests\Band.Business.Tests.csproj", "{F46F1AC3-851A-464C-977C-2D10F36DCC55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Band", "Band\Band.csproj", "{2D60FF01-1F47-4407-8964-371B40E7C9B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Band", "WPF\Band.csproj", "{2D60FF01-1F47-4407-8964-371B40E7C9B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
