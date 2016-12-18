@@ -2,24 +2,8 @@
 {
     public class BandMember
     {
-        private string _name;
-        private double _rate;                
-        public BandMember(string name, double rate)
-        {
-            Name = name;
-            Rate = rate;                        
-        }
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        public double Rate
-        {
-            get { return _rate; }
-            set { _rate = value; }
-        }               
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
+        public virtual double Rate { get; set; }
     }
 }

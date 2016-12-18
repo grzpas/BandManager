@@ -6,9 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using WindowsForms.Band.Forms;
-using Band.Model.DB;
 using Band.Model.Entities;
-using Band.Model.Songs;
 
 namespace WindowsForms.Band
 {
@@ -30,7 +28,7 @@ namespace WindowsForms.Band
             ConfigureDataGrid();
         }
 
-        private void FilterSongsFromServer()
+        private void FilterSongs()
         {
             if (textBoxFilter.Text != "")
             {
@@ -73,7 +71,7 @@ namespace WindowsForms.Band
                 }
                 else
                 {
-                    result.Add("");
+                    result.Add(string.Empty);
                 }
             }
             return result;
@@ -81,14 +79,11 @@ namespace WindowsForms.Band
 
         private void BindSongData()
         {
-            using (var session = DataBase.Instance.SessionFactory.OpenSession())
-            {
-                _songs = new BindingList<Song>(session.CreateCriteria(typeof(Song)).List<Song>().OrderBy(x=>x.Title).ToList());
-                _bs.DataSource = _songs;
-                chordsRichText.DataBindings.Add("Text", _bs, "Chords", true);
-                dgvSongs.DataSource = _bs;
-                _bs.ResetBindings(false);
-           }
+            _songs = new BindingList<Song>(); //Todo
+            _bs.DataSource = _songs;
+            chordsRichText.DataBindings.Add("Text", _bs, "Chords", true);
+            dgvSongs.DataSource = _bs;
+            _bs.ResetBindings(false);
         }
 
         private void ConfigureDataGrid()
@@ -122,34 +117,23 @@ namespace WindowsForms.Band
 
         private void UpdateDataBase()
         {
-
             var list = (BindingList<Song>)_bs.DataSource;
-
-            using (var session = DataBase.Instance.SessionFactory.OpenSession())
+            foreach (var element in list)
             {
-                foreach (var element in list)
-                {
-                    session.SaveOrUpdate(element);
-                }
+                //session.SaveOrUpdate(element); //Update repository
             }
         }
 
         private string GetCurrentSongChord()
         {
-            if (dgvSongs.CurrentRow == null)
-                return null;
-            return this.dgvSongs.CurrentRow.Cells[2].Value.ToString().Trim();
+            return dgvSongs.CurrentRow?.Cells[2].Value.ToString().Trim();
         }
         
         private string GetChords(string sTitle)
         {
             sTitle = sTitle.Replace("'", "''");
             var theItem = _songs.ToList().Find(x => x.Title == sTitle);
-            if (theItem != null)
-            {
-                return theItem.Chords;
-            }
-            return null;
+            return theItem?.Chords;
         }
 
         static int CountLinesInString(string s)
@@ -175,13 +159,12 @@ namespace WindowsForms.Band
             }
 
             string sString = sLine;
-            string sChords = null;
             if (bIncludeChords)
             {
                 char[] separators = { '"' };
                 string[] columns = sLine.Split(separators);
                 string sTitle = columns[1];
-                sChords = GetChords(sTitle);
+                var sChords = GetChords(sTitle);
                 if (!string.IsNullOrEmpty(sChords))
                 {
                     sChords = sChords.Trim();
@@ -216,40 +199,9 @@ namespace WindowsForms.Band
             }
         }
 
-        private void TransposeToTargetScale(string scale)
-        {
-            string oldSongChord = GetCurrentSongChord();
-            if (!string.IsNullOrEmpty(oldSongChord))
-            {
-                string oldChords = GetCurrentChordText();
-                Chord currentSongChord = new Chord(oldSongChord);
-                SongReader currentSongReader = new SongReader(currentSongChord);
-                currentSongReader.Read(oldChords);
-                ChordTransposer transposer = new ChordTransposer(currentSongReader);
-                SongReader newSongReader = transposer.Transpose(new Chord(scale));
-                SetNewChordText(newSongReader.ToString());
-                SetNewSongChord(newSongReader.SongChord.ToString());
-                this.UpdateDataBase();
+   
 
-            }
-        }
-
-        private void TransposeUpDown(int semiTones )
-        {
-            string oldSongChord = GetCurrentSongChord();
-            if (!string.IsNullOrEmpty(oldSongChord))
-            {
-                string oldChords = GetCurrentChordText();
-                Chord currentSongChord = new Chord(oldSongChord);
-                SongReader currentSongReader = new SongReader(currentSongChord);
-                currentSongReader.Read(oldChords);
-                ChordTransposer transposer = new ChordTransposer(currentSongReader);
-                SongReader newSongReader = transposer.Transpose(semiTones, currentSongChord.IsSharp());
-                SetNewChordText(newSongReader.ToString());
-                SetNewSongChord(newSongReader.SongChord.ToString());
-                this.UpdateDataBase();
-            }
-        }
+        
 
         private void SetNewChordText(string sChordText)
         {
@@ -406,13 +358,13 @@ namespace WindowsForms.Band
 
         private void textBoxFilter_Leave(object sender, EventArgs e)
         {
-            FilterSongsFromServer();
+            FilterSongs();
         }
 
         private void textBoxFilter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                FilterSongsFromServer();
+                FilterSongs();
         }
 
         private void btnGroup_Click(object sender, EventArgs e)
@@ -428,12 +380,10 @@ namespace WindowsForms.Band
      
         private void btnTransposeDown_Click(object sender, EventArgs e)
         {
-            TransposeUpDown(-1);
         }
 
         private void btnTransposeUp_Click(object sender, EventArgs e)
         {
-            TransposeUpDown(1);
         }
 
         private void lstSelectedSongs_KeyDown(object sender, KeyEventArgs e)
@@ -465,13 +415,15 @@ namespace WindowsForms.Band
 
         private void txtBoxTargetScale_Leave(object sender, EventArgs e)
         {
-            TransposeToTargetScale(txtBoxTargetScale.Text.Trim());
+
         }
 
         private void txtBoxTargetScale_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                TransposeToTargetScale(txtBoxTargetScale.Text.Trim());
+            {
+                
+            }
         }
 
         private void dgvSongs_DoubleClick(object sender, EventArgs e)

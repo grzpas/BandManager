@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using Band.Model.Google;
 using Google.GData.Calendar;
 
 namespace WindowsForms.Band.Forms
 {
     public partial class CalendarForm : PBandForm
     {
-        private readonly PBCalendar _calendar = new PBCalendar();
         private void UpdateControls(EventEntry upComingEvent)
         {
             if (upComingEvent != null)
@@ -55,8 +53,7 @@ namespace WindowsForms.Band.Forms
 
         public void GetClosestUpcomingEvent()
         {
-            var upComingEvent = _calendar.GetUpcomingEvent();
-            UpdateControls(upComingEvent);
+            UpdateControls(null);
         }
 
         public DateTime LastSelectedDate
@@ -69,8 +66,7 @@ namespace WindowsForms.Band.Forms
             Cursor = Cursors.WaitCursor;
             try
             {
-                EventEntry upComingEvent = _calendar.GetUpcomingEvent(dateTimePicker.Value, dateTimePicker.Value);
-                UpdateControls(upComingEvent);
+                UpdateControls(null);
             }
             finally
             {

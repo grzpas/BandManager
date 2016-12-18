@@ -242,7 +242,7 @@ namespace WindowsForms.Band.Forms
             this.btnCalculatePayroll.TabIndex = 29;
             this.btnCalculatePayroll.Text = "Calculate";
             this.btnCalculatePayroll.UseVisualStyleBackColor = true;
-            this.btnCalculatePayroll.Click += new System.EventHandler(this.btnCalculatePay_Click);
+
             // 
             // label1
             // 

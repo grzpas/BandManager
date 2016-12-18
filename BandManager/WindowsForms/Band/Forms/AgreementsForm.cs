@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WindowsForms.Band.Controls;
-using Band.Model.DB;
 using Band.Model.Entities;
-using Band.Model.Google;
 
 namespace WindowsForms.Band.Forms
 {
@@ -16,8 +14,8 @@ namespace WindowsForms.Band.Forms
         {
             InitializeComponent();
             ConfigureDataGrid();
-                       
-           // _bs.DataSource = DataBase.Instance.Session.CreateCriteria(typeof(Agreement)).List<Agreement>();
+
+            _bs.DataSource = null; //Todo: update
             _bs.ResetBindings(false);
         }
  
@@ -94,43 +92,19 @@ namespace WindowsForms.Band.Forms
         }
         
 
-        private void UpdateEventInCalendar()
-        {  
-            if (_bs.Current != null)
-            {
-                Agreement agreement = (Agreement)_bs.Current;
-                PBCalendar calendar = new PBCalendar();
-                PBCalendar.AsyncMethodCaller caller = calendar.CreateEvent;
-                caller.BeginInvoke("Wesele", agreement.GetEventDescription(), agreement.City, agreement.StartTime, null, null);
-            }
-
-        }
-
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (IsSignedColumnClicked(e))
             {
                 
                 object value = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                //DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell) dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (value is DBNull)
                     return;
 
                 if ((bool)value)
                 {
-                    UpdateEventInCalendar();
-                    DisplayAgreementPDF();
-                    //cell.ReadOnly = true;
-                }
-            }
-        }
 
-        private void DisplayAgreementPDF()
-        {
-            if (_bs.Current != null)
-            {
-                Agreement agreement = (Agreement) _bs.Current;
-                agreement.DisplayPdf();
+                }
             }
         }
 
@@ -153,12 +127,10 @@ namespace WindowsForms.Band.Forms
         private void SaveChangesInDataBase()
         {
             var list = (List<Agreement>)_bs.DataSource;
-            using (var session = DataBase.Instance.SessionFactory.OpenSession())
+            
+            foreach (var element in list)
             {
-                foreach (var element in list)
-                {
-                    session.SaveOrUpdate(element);
-                }
+                //Save or update element in repository
             }
         }
 
@@ -172,10 +144,7 @@ namespace WindowsForms.Band.Forms
             var agreement = (Agreement)_bs.Current;
             if (agreement != null)
             {
-                using (var session = DataBase.Instance.SessionFactory.OpenSession())
-                {
-                    session.Delete(agreement);
-                }
+                //Delete agreement from repository
             }
         }
     }

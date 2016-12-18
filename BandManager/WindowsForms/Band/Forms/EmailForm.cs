@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Band.Model.Internet;
+
 
 namespace WindowsForms.Band.Forms
 {
@@ -16,13 +16,11 @@ namespace WindowsForms.Band.Forms
             try
             {
                 Cursor = Cursors.WaitCursor;
-                Email.SendEmail("band@progressband.pl", txtBoxTo.Text, txtBoxSubject.Text, txtBoxContent.Text);
             }
             finally
             {
                 Cursor = Cursors.Default;
             }
-            
         }
     }
 }

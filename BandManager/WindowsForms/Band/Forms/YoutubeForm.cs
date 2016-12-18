@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
-using Band.Model.Google;
 
 namespace WindowsForms.Band.Forms
 {
     public partial class YoutubeForm : PBandForm
     {
-        private PBandYoutube _youtube = new PBandYoutube();
+
         public YoutubeForm()
         {
             InitializeComponent();
@@ -14,7 +14,7 @@ namespace WindowsForms.Band.Forms
 
         private void txtBoxFilmLinks_DoubleClick(object sender, EventArgs e)
         {
-            var videoLinks = _youtube.GetAllVideoLinks();
+            var videoLinks = new List<string>();
             var stringBuilder = new StringBuilder();
             foreach(var videoLink in videoLinks)
             {
