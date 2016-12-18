@@ -302,7 +302,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Band.Model\Band.Db.Entities.csproj">
+    <ProjectReference Include="..\..\Band.Db.Entities\Band.Db.Entities.csproj">
       <Project>{04884B06-8088-44B1-AA5C-907B542EB568}</Project>
       <Name>Band.Db.Entities</Name>
     </ProjectReference>

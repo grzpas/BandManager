@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Band.Model\Band.Db.Entities.csproj">
+    <ProjectReference Include="..\Band.Db.Entities\Band.Db.Entities.csproj">
       <Project>{04884b06-8088-44b1-aa5c-907b542eb568}</Project>
       <Name>Band.Db.Entities</Name>
     </ProjectReference>

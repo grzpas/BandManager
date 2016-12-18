@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utils.Internet;
+﻿using Utils.Internet;
 
-namespace Utils.Tests
+namespace Utils.Tests.Internet
 {
     public class FTPTest
     {
