@@ -8,8 +8,8 @@
     <ProjectGuid>{04884B06-8088-44B1-AA5C-907B542EB568}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Band.Model</RootNamespace>
-    <AssemblyName>Band.Model</AssemblyName>
+    <RootNamespace>Band.Domain</RootNamespace>
+    <AssemblyName>Band.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,9 +35,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\BandMember.cs" />
-    <Compile Include="Entities\Agreement.cs" />
-    <Compile Include="Entities\Song.cs" />
+    <Compile Include="BandMember.cs" />
+    <Compile Include="Agreement.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

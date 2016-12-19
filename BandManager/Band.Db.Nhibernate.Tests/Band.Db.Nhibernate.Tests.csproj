@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99D633C3-DADD-4CB3-BB86-A46C77EB3A2C}</ProjectGuid>
+    <ProjectGuid>{AC07D873-42DD-42E4-9089-0A4224BFA757}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Band.Db.Nhibernate</RootNamespace>
-    <AssemblyName>Band.Db.Nhibernate</AssemblyName>
+    <RootNamespace>Band.Db.Nhibernate.Tests</RootNamespace>
+    <AssemblyName>Band.Db.Nhibernate.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,26 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\Bin\FluentNHibernate\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\Bin\FluentNHibernate\NHibernate.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Bin\NUnit\framework\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBase.cs" />
-    <Compile Include="Mappings\AgreementMap.cs" />
-    <Compile Include="Mappings\SongMap.cs" />
-    <Compile Include="NHibernateRepository.cs" />
+    <Compile Include="DataBaseCreationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Band.Domain\Band.Domain.csproj">
-      <Project>{04884b06-8088-44b1-aa5c-907b542eb568}</Project>
-      <Name>Band.Domain</Name>
+    <ProjectReference Include="..\Band.Db.Nhibernate\Band.Db.Nhibernate.csproj">
+      <Project>{99D633C3-DADD-4CB3-BB86-A46C77EB3A2C}</Project>
+      <Name>Band.Db.Nhibernate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

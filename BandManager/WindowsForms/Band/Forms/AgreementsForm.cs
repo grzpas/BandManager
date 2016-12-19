@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WindowsForms.Band.Controls;
-using Band.Model.Entities;
+using Band.Domain;
 
 namespace WindowsForms.Band.Forms
 {

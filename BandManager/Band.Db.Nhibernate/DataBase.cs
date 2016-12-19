@@ -2,6 +2,7 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Band.Db.Nhibernate
 {
@@ -17,15 +18,27 @@ namespace Band.Db.Nhibernate
         public static DataBase Instance => _instance ?? (_instance = new DataBase());
 
         private static ISessionFactory CreateSessionFactory()
-        {            
+        {
+            var config = CreateFluentConfiguration();
+            return config.BuildSessionFactory();
+        }
+
+        private static FluentConfiguration CreateFluentConfiguration()
+        {
             Assembly assembly = Assembly.GetAssembly(typeof(DataBase));
             var config =
                 Fluently.Configure().Database(
-                    MySQLConfiguration.Standard.ConnectionString(
-                        c => c.Server("188.40.103.151").Database("pband_db").Username("pband").Password("yaya2000"))).
+                        MySQLConfiguration.Standard.ConnectionString(
+                            c => c.Server("localhost").Database("band").Username("maestro").Password("maestro"))).
                     Mappings(m => m.FluentMappings.AddFromAssembly(assembly));
-            return config.BuildSessionFactory();
+            return config;
+        }
 
+        public static void CreateDatabase()
+        {
+            var config = CreateFluentConfiguration().BuildConfiguration();
+            var exporter = new SchemaExport(config);
+            exporter.Execute(true, true, false);
         }
     }
 }

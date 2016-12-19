@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Band.Model.Entities
+namespace Band.Domain
 {
     public class Agreement 
     {

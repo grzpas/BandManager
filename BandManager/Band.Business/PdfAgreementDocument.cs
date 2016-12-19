@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Band.Model.Entities;
+using Band.Domain;
 using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;

@@ -1,4 +1,4 @@
-﻿namespace Band.Model.Entities
+﻿namespace Band.Domain
 {
     public class Song
     {

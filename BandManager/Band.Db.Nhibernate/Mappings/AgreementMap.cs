@@ -1,4 +1,4 @@
-﻿using Band.Model.Entities;
+﻿using Band.Domain;
 using FluentNHibernate.Mapping;
 
 namespace Band.Db.Nhibernate.Mappings

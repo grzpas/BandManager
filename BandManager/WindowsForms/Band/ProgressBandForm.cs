@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using WindowsForms.Band.Forms;
-using Band.Model.Entities;
+using Band.Domain;
 
 namespace WindowsForms.Band
 {
