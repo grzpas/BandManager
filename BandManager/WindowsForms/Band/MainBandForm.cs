@@ -10,7 +10,7 @@ using Band.Domain;
 
 namespace WindowsForms.Band
 {
-    public partial class ProgressBandForm : PBandForm
+    public partial class MainBandForm : PBandForm
     {
         private readonly BindingSource _bs = new BindingSource();
         private Font _printFont = new Font("Courier New", 12);
@@ -21,7 +21,7 @@ namespace WindowsForms.Band
         private bool _readOnly = false;
         private BindingList<Song> _songs = new BindingList<Song>();
 
-        public ProgressBandForm()
+        public MainBandForm()
         {
             InitializeComponent();
             ToggleEdition();

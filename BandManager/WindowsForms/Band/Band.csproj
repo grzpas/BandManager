@@ -64,15 +64,15 @@
     </Reference>
     <Reference Include="Google.GData.Calendar, Version=1.8.0.0, Culture=neutral, PublicKeyToken=aa6748391206b888, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Bin\Google Data API SDK\Redist\Google.GData.Calendar.dll</HintPath>
+      <HintPath>..\..\Bin\Google Data API SDK\Redist\Google.GData.Calendar.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.Client, Version=1.8.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Bin\Google Data API SDK\Redist\Google.GData.Client.dll</HintPath>
+      <HintPath>..\..\Bin\Google Data API SDK\Redist\Google.GData.Client.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.Extensions, Version=1.8.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Bin\Google Data API SDK\Redist\Google.GData.Extensions.dll</HintPath>
+      <HintPath>..\..\Bin\Google Data API SDK\Redist\Google.GData.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.YouTube, Version=1.8.0.0, Culture=neutral, PublicKeyToken=af04a32718ae8833, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -118,7 +118,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -127,8 +129,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -191,11 +191,11 @@
     <Compile Include="Forms\PBandForm.Designer.cs">
       <DependentUpon>PBandForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProgressBandForm.cs">
+    <Compile Include="MainBandForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressBandForm.Designer.cs">
-      <DependentUpon>ProgressBandForm.cs</DependentUpon>
+    <Compile Include="MainBandForm.Designer.cs">
+      <DependentUpon>MainBandForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,8 +226,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressBandForm.resx">
-      <DependentUpon>ProgressBandForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainBandForm.resx">
+      <DependentUpon>MainBandForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -307,7 +307,7 @@
       <Name>Band.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Band.Controls\Band.Controls.csproj">
-      <Project>{695C85C0-1D2B-4EDA-A1F5-16F8A3502022}</Project>
+      <Project>{695c85c0-1d2b-4eda-a1f5-16f8a3502022}</Project>
       <Name>Band.Controls</Name>
     </ProjectReference>
   </ItemGroup>

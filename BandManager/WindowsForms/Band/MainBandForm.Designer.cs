@@ -2,7 +2,7 @@
 
 namespace WindowsForms.Band
 {
-    partial class ProgressBandForm
+    partial class MainBandForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace WindowsForms.Band
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressBandForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainBandForm));
             this.dgvSongs = new System.Windows.Forms.DataGridView();
             this.bnSongs = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();

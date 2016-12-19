@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Band.Domain;
@@ -17,7 +18,7 @@ namespace Band.Db.Nhibernate
 
         protected ISession Session { get { return _session; } }
 
-        public TEntity GetById(TKey id)
+        public TEntity GetByKey(TKey id)
         {
             return _session.Get<TEntity>(id);
         }
@@ -41,5 +42,12 @@ namespace Band.Db.Nhibernate
         {
             throw new NotImplementedException();
         }
+
+        public IList<TEntity> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }   
 }

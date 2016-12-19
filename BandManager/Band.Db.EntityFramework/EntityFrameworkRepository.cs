@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -24,7 +25,7 @@ namespace Band.Db.EntityFramework
             DbContext.Set<TEntity>().Add(entity);
         }
 
-        public TEntity GetById(TKey id)
+        public TEntity GetByKey(TKey id)
         {
             return _dbContext.Set<TEntity>().Find(id);
         }
@@ -42,6 +43,11 @@ namespace Band.Db.EntityFramework
         }
 
         public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<TEntity> GetAll()
         {
             throw new NotImplementedException();
         }
