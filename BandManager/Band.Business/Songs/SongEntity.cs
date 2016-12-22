@@ -2,14 +2,14 @@
 {
     public class SongEntity
     {
-        private string _entity;
+        private readonly string _entity;
 
         public SongEntity(string entity)
         {
             _entity = entity;
         }
            
-        public new string ToString()
+        public override string ToString()
         {
             return _entity;
         }

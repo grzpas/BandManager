@@ -5,27 +5,23 @@ using System.Windows.Forms;
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class PBandForm : Form
+    public partial class BandForm : Form
     {
-        public PBandForm()
+        public BandForm()
         {
-            Cursor = Cursors.WaitCursor;
             InitializeComponent();
         }
 
         public void TakeScreenshot()
         {
-            //this.Hide();
             var bmpScreenshot = new Bitmap(this.Width, this.Height, PixelFormat.Format32bppArgb);
             var gfxScreenshot = Graphics.FromImage(bmpScreenshot);
             gfxScreenshot.CopyFromScreen(this.Left, this.Top, 0, 0, this.Bounds.Size, CopyPixelOperation.SourceCopy);
-            bmpScreenshot.Save(this.Text + ".jpg", ImageFormat.Jpeg);
-            //this.Show();            
+            bmpScreenshot.Save(this.Text + ".jpg", ImageFormat.Jpeg);         
         }
 
-        private void PBandForm_Activated(object sender, EventArgs e)
+        private void BandForm_Activated(object sender, EventArgs e)
         {
-            Cursor = Cursors.Default;
         }        
     }
 }

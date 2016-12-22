@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms.Band.Controls
 {
-    partial class PBDataGridView
+    partial class BandDataGridView
     {
         /// <summary>
         /// Required designer variable.

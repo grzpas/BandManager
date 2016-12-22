@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class EmailForm : PBandForm
+    public partial class EmailForm : BandForm
     {
         public EmailForm()
         {

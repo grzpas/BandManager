@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms.Band.Forms
 {
-    partial class PBandForm
+    partial class BandForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PBandForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BandForm));
             this.SuspendLayout();
             // 
             // PBandForm
@@ -39,7 +39,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PBandForm";
             this.Text = "PBandForm";
-            this.Activated += new System.EventHandler(this.PBandForm_Activated);
+            this.Activated += new System.EventHandler(this.BandForm_Activated);
             this.ResumeLayout(false);
 
         }

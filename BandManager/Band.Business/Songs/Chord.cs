@@ -4,8 +4,8 @@ namespace Band.Business.Songs
 {
     public class Chord : SongEntity
     {
-        private string _basicChord;
-        private string _chordExtension;
+        private readonly string _basicChord;
+        private readonly string _chordExtension;
         private bool _isFlat;
         private bool _isSharp;
         public Chord(string identity)
@@ -13,25 +13,22 @@ namespace Band.Business.Songs
         {
             if (!IsValid(identity, ref _basicChord, ref _chordExtension))
                 throw new WrongChordFormatException(identity);
-            setIndicators();
+            SetIndicators();
         }
 
         
 
         public Chord (string basicChord, string extension)
-        : base (basicChord + (!string.IsNullOrEmpty(extension)? ("." + extension):""))
+        : base (basicChord + (!string.IsNullOrEmpty(extension)? ("." + extension): string.Empty))
         {
             _basicChord = basicChord;
             _chordExtension = extension;
-            setIndicators();
+            SetIndicators();
         }
 
-        private void setIndicators()
+        private void SetIndicators()
         {
-            
             _isFlat = ChordsTypes.Instance.FlatChordsArrangement.ContainsValue(_basicChord.ToUpper());
-            
-            //_isSharp = ChordsTypes.Instance.SharpChordsArrangement.ContainsValue(_basicChord.ToUpper());
             _isSharp = !_isFlat;
         }
 
@@ -83,15 +80,9 @@ namespace Band.Business.Songs
             return _basicChord == _basicChord.ToLower();
         }
 
-        public string BasicChord
-        {
-            get { return _basicChord; }
-        }
+        public string BasicChord => _basicChord;
 
-        public string Extension
-        {
-            get { return _chordExtension; }
-        }
+        public string Extension => _chordExtension;
 
         public new string ToString()
         {

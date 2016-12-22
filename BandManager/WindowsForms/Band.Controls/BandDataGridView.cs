@@ -2,9 +2,9 @@
 
 namespace WindowsForms.Band.Controls
 {
-    public partial class PBDataGridView : DataGridView
+    public partial class BandDataGridView : DataGridView
     {
-        public PBDataGridView()
+        public BandDataGridView()
         {
             InitializeComponent();
         }

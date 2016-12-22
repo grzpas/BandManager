@@ -57,11 +57,6 @@ namespace WindowsForms.Band.Controls
             {
                 this.Items.RemoveAt(index);
             }
-
-            /*while (this.SelectedItems.Count > 0)
-            {
-                this.Items.Remove(this.SelectedItem);
-            }*/
         }
 
         public void RemoveEmptyItems()
@@ -140,21 +135,11 @@ namespace WindowsForms.Band.Controls
                     RemoveSelectedItems();
                     //difference between first
                     int difference = list.Count == 0? 0 : index - list[0];
-                    //if (difference < 0)
-                    //    ++difference;
-
                     foreach (var item in itemsSelected)
                     {
                         this.Items.Insert(item.Value + difference, item.Key);
                     }
                 }
-
-                
-                /*if( index > -1 && index < this.Items.Count) 
-                    Items.Insert(index, e.Data.GetData(DataFormats.Text)); 
-                else 
-                    Items.Add(e.Data.GetData(DataFormats.Text)); 
-                Items.RemoveAt(startingIndex);*/
             } 
         } 
         
@@ -170,11 +155,8 @@ namespace WindowsForms.Band.Controls
         {
             if (MouseButtons == MouseButtons.Right && SelectedIndices != null && SelectedIndices.Count > 0) 
             {
-                //startingIndex = this.IndexFromPoint(new Point(e.X, e.Y)); 
                 DoDragDrop(SelectedIndices, DragDropEffects.Copy); 
             } 
         } 
- 
-        
     }
 }

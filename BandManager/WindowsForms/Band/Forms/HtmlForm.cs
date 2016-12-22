@@ -2,7 +2,7 @@
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class HtmlForm : PBandForm
+    public partial class HtmlForm : BandForm
     {
         public string HtmlContent { get; set; }
 

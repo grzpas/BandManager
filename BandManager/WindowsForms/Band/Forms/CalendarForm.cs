@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Google.GData.Calendar;
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class CalendarForm : PBandForm
+    public partial class CalendarForm : BandForm
     {
         private void UpdateControls(EventEntry upComingEvent)
         {
             if (upComingEvent != null)
             {
                 txtBoxCalendarTitle.Text = upComingEvent.Title.Text;
-                dateTimePicker.Value = upComingEvent.Times[0].StartTime;
-                txtBoxCalendarLocation.Text = upComingEvent.Locations[0].ValueString;
+                dateTimePicker.Value = upComingEvent.Times.First().StartTime;
+                txtBoxCalendarLocation.Text = upComingEvent.Locations.First().ValueString;
                 txtBoxCalendarContents.Text = upComingEvent.Content.Content;
             }
             else
             {
-                txtBoxCalendarTitle.Text = "";                
-                txtBoxCalendarLocation.Text = "";
-                txtBoxCalendarContents.Text = "";
+                txtBoxCalendarTitle.Text = string.Empty;                
+                txtBoxCalendarLocation.Text = string.Empty;
+                txtBoxCalendarContents.Text = string.Empty;
             }
         }
 
@@ -72,7 +73,6 @@ namespace WindowsForms.Band.Forms
             {
                 Cursor = Cursors.Default;
             }
-            
         }
     }
 }

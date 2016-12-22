@@ -2,7 +2,7 @@
 
 namespace WindowsForms.Band
 {
-    public partial class MainForm : PBandForm
+    public partial class MainForm : BandForm
     {
         public MainForm()
         {

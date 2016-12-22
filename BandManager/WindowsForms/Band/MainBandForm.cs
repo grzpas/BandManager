@@ -10,7 +10,7 @@ using Band.Domain;
 
 namespace WindowsForms.Band
 {
-    public partial class MainBandForm : PBandForm
+    public partial class MainBandForm : BandForm
     {
         private readonly BindingSource _bs = new BindingSource();
         private Font _printFont = new Font("Courier New", 12);
@@ -302,17 +302,12 @@ namespace WindowsForms.Band
             saveFileDialog.Title = "Save list of songs";
             if ((saveFileDialog.ShowDialog(this) == DialogResult.OK) && !string.IsNullOrEmpty(saveFileDialog.FileName))           
             {
-                StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName);
-                try
+                using (var streamWriter = new StreamWriter(saveFileDialog.FileName))
                 {
-                    foreach(var line in lstSelectedSongs.Items)
+                    foreach (var line in lstSelectedSongs.Items)
                     {
                         streamWriter.WriteLine(line);
                     }
-                }
-                finally
-                {
-                    streamWriter.Close();    
                 }
             }
         }
@@ -323,18 +318,13 @@ namespace WindowsForms.Band
             openFileDialog.Title = "Open list of songs";
             if ((openFileDialog.ShowDialog(this) == DialogResult.OK) && !string.IsNullOrEmpty(openFileDialog.FileName))
             {
-                var streamReader = new StreamReader(openFileDialog.FileName);
-                try
+                using (var streamReader = new StreamReader(openFileDialog.FileName))
                 {
                     string line = null;
                     while ((line = streamReader.ReadLine()) != null)
                     {
                         lstSelectedSongs.Items.Add(line);
                     }
-                }
-                finally
-                {
-                    streamReader.Close();
                 }
             }            
         }

@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using NHibernate;
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class FinanceForm : PBandForm
+    public partial class FinanceForm : BandForm
     {              
         public FinanceForm()
         {
-            InitializeComponent();     
-            //lstBoxPlaces.Items.AddRange();                     
+            InitializeComponent();                   
         }
 
            
@@ -48,7 +44,6 @@ namespace WindowsForms.Band.Forms
             try
             {
                
-                PutGoogleMapsOnFTP();
             }
             finally
             {
@@ -58,10 +53,6 @@ namespace WindowsForms.Band.Forms
         }
 
     
-        private void PutGoogleMapsOnFTP()
-        {            
-           
-        }
 
         private void FinanceForm_DoubleClick(object sender, EventArgs e)
         {            

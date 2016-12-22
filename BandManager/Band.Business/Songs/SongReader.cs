@@ -5,20 +5,15 @@ namespace Band.Business.Songs
 {
     public class SongReader
     {
-        private Chord _scale;
         private List<SongEntity> _songIdentities = new List<SongEntity>();
         
-        public Chord SongChord
-        {
-            get { return _scale; }
-
-        }
+        public Chord SongChord { get; }
 
         public SongReader(Chord scale)
         {
             if(scale.Extension != "")
                 throw new Exception("Wrong scale");
-           _scale = scale;
+           SongChord = scale;
         }
 
         public void Read(string songIdentities)

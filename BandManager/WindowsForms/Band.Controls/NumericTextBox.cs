@@ -30,7 +30,7 @@ namespace WindowsForms.Band.Controls
 
         private void TextBoxKeyPress(object sender, KeyPressEventArgs e)
         {            
-            if (_numberEntered == false)
+            if (!_numberEntered)
             {         
                 e.Handled = true;
             }

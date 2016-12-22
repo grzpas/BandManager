@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class YoutubeForm : PBandForm
+    public partial class YoutubeForm : BandForm
     {
 
         public YoutubeForm()

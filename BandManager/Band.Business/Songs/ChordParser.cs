@@ -6,7 +6,7 @@ namespace Band.Business.Songs
 {
     public class ChordParser
     {
-        private readonly List<string> _identities = new List<string>();
+        private readonly List<string> _identities;
         public ChordParser(string textToParse)
         { 
             const string separators = " ";

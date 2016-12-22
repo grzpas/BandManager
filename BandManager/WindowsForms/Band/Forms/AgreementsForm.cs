@@ -6,7 +6,7 @@ using Band.Domain;
 
 namespace WindowsForms.Band.Forms
 {
-    public partial class AgreementsForm : PBandForm
+    public partial class AgreementsForm : BandForm
     {
         private readonly BindingSource _bs = new BindingSource();
 

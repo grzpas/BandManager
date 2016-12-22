@@ -6,7 +6,7 @@ using WindowsForms.Band.Controls;
 
 namespace WindowsForms.Band.Forms
 { 
-        public partial class GridDetailForm : PBandForm
+        public partial class GridDetailForm : BandForm
         {
             private Point _startingPoint = new Point(20, 20);
             private readonly List<Control> _controls = new List<Control>();

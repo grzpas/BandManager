@@ -59,5 +59,14 @@ namespace WindowsForms.Band.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agreement.
+        /// </summary>
+        internal static string AgreementsForm_dataGridView_DoubleClick_Agreement {
+            get {
+                return ResourceManager.GetString("AgreementsForm_dataGridView_DoubleClick_Agreement", resourceCulture);
+            }
+        }
     }
 }
