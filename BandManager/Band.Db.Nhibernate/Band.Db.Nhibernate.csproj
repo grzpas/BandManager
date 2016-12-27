@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="DataBase.cs" />
     <Compile Include="Mappings\AgreementMap.cs" />
+    <Compile Include="Mappings\BandMemberMap.cs" />
     <Compile Include="Mappings\SongMap.cs" />
+    <Compile Include="Mappings\SongTypeMap.cs" />
     <Compile Include="NHibernateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

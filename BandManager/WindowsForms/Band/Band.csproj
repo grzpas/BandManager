@@ -76,9 +76,17 @@
       <HintPath>..\..\packages\Google.GData.Extensions.2.2.0.0\lib\Google.GData.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -271,6 +279,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Band.Business\Band.Business.csproj">
+      <Project>{D8997913-94A0-4E5C-BF1B-F9E3D8C022D5}</Project>
+      <Name>Band.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Band.Db.Nhibernate\Band.Db.Nhibernate.csproj">
+      <Project>{99d633c3-dadd-4cb3-bb86-a46c77eb3a2c}</Project>
+      <Name>Band.Db.Nhibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Band.Domain\Band.Domain.csproj">
       <Project>{04884B06-8088-44B1-AA5C-907B542EB568}</Project>
       <Name>Band.Domain</Name>

@@ -9,7 +9,7 @@ namespace Band.Db.Nhibernate.Mappings
         {
             Table("songs");
             Id(x => x.Title);
-            Map(x => x.Type);
+            //Map(x => x.Type);
             Map(x => x.Scale);
             Map(x => x.Chords);
         }

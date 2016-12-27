@@ -8,16 +8,7 @@ namespace Band.Db.Nhibernate
 {
     public class DataBase
     {        
-        private static DataBase _instance;
-        public readonly ISessionFactory SessionFactory;
-        private DataBase()
-        {
-            SessionFactory = CreateSessionFactory();
-        }
-
-        public static DataBase Instance => _instance ?? (_instance = new DataBase());
-
-        private static ISessionFactory CreateSessionFactory()
+        public static ISessionFactory CreateSessionFactory()
         {
             var config = CreateFluentConfiguration();
             return config.BuildSessionFactory();

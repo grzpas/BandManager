@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Band.Domain
 {
-    public interface IRepository<TEntity, in TKey> where TEntity : class
+    public interface IRepository<TDomainEntity, in TDomainKey> where TDomainEntity : class
     {
-        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        IList<TEntity> GetAll();
-        TEntity GetByKey(TKey id);
-        void Create(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        IEnumerable<TDomainEntity> Find(Expression<Func<TDomainEntity, bool>> filter, Func<IQueryable<TDomainEntity>, IOrderedQueryable<TDomainEntity>> orderBy = null);
+        IList<TDomainEntity> GetAll();
+        TDomainEntity GetByKey(TDomainKey id);
+        void Create(TDomainEntity entity);
+        void Update(TDomainEntity entity);
+        void Delete(TDomainEntity entity);
     }
 }

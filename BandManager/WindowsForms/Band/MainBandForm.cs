@@ -6,12 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using WindowsForms.Band.Forms;
+using Band.Business;
 using Band.Domain;
 
 namespace WindowsForms.Band
 {
     public partial class MainBandForm : BandForm
     {
+        private readonly IAppDependencies _appDependencies;
         private readonly BindingSource _bs = new BindingSource();
         private Font _printFont = new Font("Courier New", 12);
         private Color _colour = Color.Black;
@@ -21,8 +23,10 @@ namespace WindowsForms.Band
         private bool _readOnly = false;
         private BindingList<Song> _songs = new BindingList<Song>();
 
-        public MainBandForm()
+        public MainBandForm(IAppDependencies appDependencies)
         {
+            _appDependencies = appDependencies;
+
             InitializeComponent();
             ToggleEdition();
             ConfigureDataGrid();
@@ -79,7 +83,7 @@ namespace WindowsForms.Band
 
         private void BindSongData()
         {
-            _songs = new BindingList<Song>(); //Todo
+            _songs = new BindingList<Song>(_appDependencies.SongRepository.GetAll());
             _bs.DataSource = _songs;
             chordsRichText.DataBindings.Add("Text", _bs, "Chords", true);
             dgvSongs.DataSource = _bs;

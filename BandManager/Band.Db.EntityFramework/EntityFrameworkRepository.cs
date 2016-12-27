@@ -42,14 +42,26 @@ namespace Band.Db.EntityFramework
             DbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
         public IList<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return DbContext.Set<TEntity>().ToList();
+        }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        {
+            IQueryable<TEntity> query = DbContext.Set<TEntity>();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (orderBy != null)
+            {
+                return orderBy(query).ToList();
+            }
+           
+            return query.ToList();
         }
     }
 }

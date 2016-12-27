@@ -4,10 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using Band.Domain;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace Band.Db.Nhibernate
 {
-    public class NHibernateRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class
+    public class NHibernateRepository<TDomainEntity, TDomainKey> : IRepository<TDomainEntity, TDomainKey> where TDomainEntity : class
     {
         private readonly ISession _session;
 
@@ -18,36 +19,39 @@ namespace Band.Db.Nhibernate
 
         protected ISession Session { get { return _session; } }
 
-        public TEntity GetByKey(TKey id)
+        public TDomainEntity GetByKey(TDomainKey id)
         {
-            return _session.Get<TEntity>(id);
+            return _session.Get<TDomainEntity>(id);
         }
 
-        public void Create(TEntity entity)
-        {
-            _session.SaveOrUpdate(entity);
-        }
-
-        public void Update(TEntity entity)
+        public void Create(TDomainEntity entity)
         {
             _session.SaveOrUpdate(entity);
         }
 
-        public void Delete(TEntity entity)
+        public void Update(TDomainEntity entity)
+        {
+            _session.SaveOrUpdate(entity);
+        }
+
+        public void Delete(TDomainEntity entity)
         {
             _session.Delete(entity);
         }
 
-        public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IList<TDomainEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _session.QueryOver<TDomainEntity>().List();
         }
 
-        public IList<TEntity> GetAll()
+        public IEnumerable<TDomainEntity> Find(Expression<Func<TDomainEntity, bool>> filter, Func<IQueryable<TDomainEntity>, IOrderedQueryable<TDomainEntity>> orderBy = null)
         {
-            throw new NotImplementedException();
-        }
+            if (orderBy != null)
+            {
+                return orderBy(_session.Query<TDomainEntity>().Where(filter)).ToList();
+            }
 
-        
+            return _session.Query<TDomainEntity>().Where(filter).ToList();
+        }
     }   
 }

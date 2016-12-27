@@ -4,7 +4,7 @@ namespace Band.Domain
 {
     public class Agreement 
     {
-        public virtual int Id { get; private set; }
+        public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
         public virtual string Address { get; set; }
         public virtual string Phone { get; set; }
