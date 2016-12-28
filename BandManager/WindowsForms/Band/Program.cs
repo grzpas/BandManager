@@ -12,6 +12,7 @@ namespace WindowsForms.Band
     {
         public IRepository<Song, string> SongRepository { get; set; }
         public IRepository<Agreement, int> AgreementsRepository { get; set; }
+        public IRepository<SongType, int> SongTypeRepository { get; set; }
     }
 
 
@@ -38,10 +39,15 @@ namespace WindowsForms.Band
                .As<IRepository<Agreement, int>>()
                .InstancePerDependency();
 
+            builder.RegisterType<NHibernateRepository<SongType, int>>()
+              .As<IRepository<SongType, int>>()
+              .InstancePerDependency();
+
             builder.Register(c => new WindowsFormsAppDependencies()
             {
                 SongRepository = c.Resolve<IRepository<Song, string>>(),
-                AgreementsRepository = c.Resolve<IRepository<Agreement, int>>()
+                AgreementsRepository = c.Resolve<IRepository<Agreement, int>>(),
+                SongTypeRepository = c.Resolve<IRepository<SongType, int>>()
             }).As<IAppDependencies>();
 
             var container = builder.Build();

@@ -6,5 +6,6 @@ namespace Band.Business
     {
         IRepository<Song, string> SongRepository { get; set; }
         IRepository<Agreement, int> AgreementsRepository { get; set; }
+        IRepository<SongType, int> SongTypeRepository { get; set; }
     }
 }

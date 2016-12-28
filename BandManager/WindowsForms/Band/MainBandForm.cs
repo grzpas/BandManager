@@ -25,7 +25,7 @@ namespace WindowsForms.Band
 
         private void FilterSongs()
         {
-            if (textBoxFilter.Text != "")
+            if (!string.IsNullOrEmpty(textBoxFilter.Text))
             {
                 _bs.Filter = "Title Like '*" + this.textBoxFilter.Text + "*'";
             }
@@ -75,19 +75,22 @@ namespace WindowsForms.Band
         private void BindSongData()
         {
             _bs.DataSource = new BindingList<Song>(_appDependencies.SongRepository.GetAll());
-            chordsRichText.DataBindings.Add("Text", _bs, "Chords", true);
             dgvSongs.DataSource = _bs;
+            bnSongs.BindingSource = _bs;
+            chordsRichText.DataBindings.Clear();
+            chordsRichText.DataBindings.Add("Text", _bs, "Chords", true);
             _bs.ResetBindings(false);
         }
 
         private void ConfigureDataGrid()
         {
             dgvSongs.AutoGenerateColumns = false;
-            DataGridViewTextBoxColumn colType = new DataGridViewTextBoxColumn();                
-            colType.CellTemplate = new DataGridViewTextBoxCell(); 
+            DataGridViewComboBoxColumn colType = new DataGridViewComboBoxColumn();                
+            colType.CellTemplate = new DataGridViewComboBoxCell(); 
             colType.Name = "Type";
             colType.HeaderText = "Type";                
             colType.DataPropertyName = "Type";
+            colType.DataSource = _appDependencies.SongTypeRepository.GetAll();
             dgvSongs.Columns.Add(colType);
 
             DataGridViewTextBoxColumn colTitle = new DataGridViewTextBoxColumn();
