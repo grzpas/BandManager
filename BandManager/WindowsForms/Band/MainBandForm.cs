@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using WindowsForms.Band.Forms;
 using Band.Business;
@@ -15,20 +14,12 @@ namespace WindowsForms.Band
     {
         private readonly IAppDependencies _appDependencies;
         private readonly BindingSource _bs = new BindingSource();
-        private Font _printFont = new Font("Courier New", 12);
-        private Color _colour = Color.Black;
-        private int _currentLine = 0;
-        private int _songNo = 0;
-        private List<string> _lines;
-        private bool _readOnly = false;
-        private BindingList<Song> _songs = new BindingList<Song>();
-
+        
         public MainBandForm(IAppDependencies appDependencies)
         {
             _appDependencies = appDependencies;
 
             InitializeComponent();
-            ToggleEdition();
             ConfigureDataGrid();
         }
 
@@ -83,8 +74,7 @@ namespace WindowsForms.Band
 
         private void BindSongData()
         {
-            _songs = new BindingList<Song>(_appDependencies.SongRepository.GetAll());
-            _bs.DataSource = _songs;
+            _bs.DataSource = new BindingList<Song>(_appDependencies.SongRepository.GetAll());
             chordsRichText.DataBindings.Add("Text", _bs, "Chords", true);
             dgvSongs.DataSource = _bs;
             _bs.ResetBindings(false);
@@ -119,15 +109,6 @@ namespace WindowsForms.Band
         }
 
 
-        private void UpdateDataBase()
-        {
-            var list = (BindingList<Song>)_bs.DataSource;
-            foreach (var element in list)
-            {
-                //session.SaveOrUpdate(element); //Update repository
-            }
-        }
-
         private string GetCurrentSongChord()
         {
             return dgvSongs.CurrentRow?.Cells[2].Value.ToString().Trim();
@@ -135,9 +116,7 @@ namespace WindowsForms.Band
         
         private string GetChords(string sTitle)
         {
-            sTitle = sTitle.Replace("'", "''");
-            var theItem = _songs.ToList().Find(x => x.Title == sTitle);
-            return theItem?.Chords;
+            return string.Empty; //Todo
         }
 
         static int CountLinesInString(string s)
@@ -153,10 +132,8 @@ namespace WindowsForms.Band
         }
 
 
-        KeyValuePair<int, string> GetItem(int currentLine,  bool bIncludeChords)
+        KeyValuePair<int, string> GetItem(string sLine,  bool bIncludeChords)
         {
-            string sLine = _lines[currentLine];
-
             if (string.IsNullOrEmpty(sLine))
             {
                 return new KeyValuePair<int, string>(1, "");
@@ -191,22 +168,6 @@ namespace WindowsForms.Band
             return this.chordsRichText.Text.Trim();
         }
 
-        private void ToggleEdition()
-        {
-            _readOnly = !_readOnly;
-            {
-                this.dgvSongs.ReadOnly = _readOnly;
-                this.chordsRichText.ReadOnly = _readOnly;
-                this.btnTransposeDown.Enabled = !_readOnly;
-                this.btnTransposeUp.Enabled = !_readOnly;
-                this.txtBoxTargetScale.Enabled = !_readOnly;
-            }
-        }
-
-   
-
-        
-
         private void SetNewChordText(string sChordText)
         {
             this.chordsRichText.Text = sChordText;
@@ -220,16 +181,17 @@ namespace WindowsForms.Band
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            _currentLine = 0;
-            _songNo = 0;
-            _lines = GetLinesForPrinting();
             this.printDocument.Print();
-
         }
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs ev)
         {
-            if (_currentLine >= _lines.Count)
+            Font printFont = new Font("Courier New", 12);
+            Color colour = Color.Black;
+            int currentLine = 0;
+            int  songNo = 0;
+            var  linesForPrinting = GetLinesForPrinting();
+            if (currentLine >= linesForPrinting.Count)
             {
                 ev.HasMorePages = false;
                 return;
@@ -239,28 +201,30 @@ namespace WindowsForms.Band
             float leftMargin = ev.MarginBounds.Left;
             float topMargin = ev.MarginBounds.Top;
             // Calculate the number of lines per page.
-            float linesPerPage = ev.MarginBounds.Height / _printFont.GetHeight(ev.Graphics);
+            float linesPerPage = ev.MarginBounds.Height / printFont.GetHeight(ev.Graphics);
                       
-            while ((lineOnPage < linesPerPage) && _currentLine < _lines.Count)
+            while ((lineOnPage < linesPerPage) && currentLine < linesForPrinting.Count)
             {
-                KeyValuePair<int, string> item = GetItem(_currentLine, this.checkBoxChords.Checked);
+                string sLine = linesForPrinting[currentLine];
+                KeyValuePair<int, string> item = GetItem(sLine, this.checkBoxChords.Checked);
                 if (!string.IsNullOrEmpty(item.Value))
-                    ++_songNo;
+                    ++songNo;
 
                 if (lineOnPage + item.Key > linesPerPage)
                 {
                     ev.HasMorePages = true;
                     return;
                 }
-                float yPos = topMargin + (lineOnPage *  _printFont.GetHeight(ev.Graphics));
-                string sLineToPrint = String.Format("{0} {1}", (!string.IsNullOrEmpty(item.Value) && !item.Value.StartsWith("[")) ?(_songNo.ToString().PadLeft(4)+"."):"", item.Value);
-                ev.Graphics.DrawString(sLineToPrint, _printFont, new SolidBrush(_colour), leftMargin, yPos, new StringFormat());
+                float yPos = topMargin + (lineOnPage *  printFont.GetHeight(ev.Graphics));
+                string sLineToPrint =
+                    $"{((!string.IsNullOrEmpty(item.Value) && !item.Value.StartsWith("[")) ? (songNo.ToString().PadLeft(4) + ".") : "")} {item.Value}";
+                ev.Graphics.DrawString(sLineToPrint, printFont, new SolidBrush(colour), leftMargin, yPos, new StringFormat());
                 lineOnPage += item.Key;  
-                _currentLine++;
+                currentLine++;
             }
 
             // If more lines exist, print another page.
-            ev.HasMorePages = (_currentLine < _lines.Count);
+            ev.HasMorePages = (currentLine < linesForPrinting.Count);
         }
 
         private void btnMoveSelected_Click(object sender, EventArgs e)
@@ -434,21 +398,6 @@ namespace WindowsForms.Band
             lstSelectedSongs.RemoveEmptyItems();
         }
 
-        private void btnFontSelection_Click(object sender, EventArgs e)
-        {
-            fontDialog.ShowColor = true;
-            fontDialog.FixedPitchOnly = true; 
-            fontDialog.Font = _printFont;
-            fontDialog.Color = _colour;
-
-            if (fontDialog.ShowDialog() != DialogResult.Cancel)
-            {
-                _printFont = fontDialog.Font;
-                _colour = fontDialog.Color;
-            }
-
-        }
-
         private void dgvSongs_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control)
@@ -458,12 +407,12 @@ namespace WindowsForms.Band
 
         private void chordsRichText_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.chordsRichText.ReadOnly == false)
-                UpdateDataBase();
-            ToggleEdition();
+            var list = (BindingList<Song>)_bs.DataSource;
+            foreach (var element in list)
+            {
+                _appDependencies.SongRepository.Update(element);
+            }
         }
-
-   
 
         private void btnFinances_Click(object sender, EventArgs e)
         {
@@ -496,7 +445,7 @@ namespace WindowsForms.Band
 
         private void btnAgreements_Click(object sender, EventArgs e)
         {            
-            var agreementsForm = new AgreementsForm();
+            var agreementsForm = new AgreementsForm(_appDependencies.AgreementsRepository);
             agreementsForm.ShowDialog();                        
         }
     }

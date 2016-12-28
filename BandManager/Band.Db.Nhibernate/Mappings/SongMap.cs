@@ -8,8 +8,9 @@ namespace Band.Db.Nhibernate.Mappings
         public SongMap()
         {
             Table("songs");
-            Id(x => x.Title);
-            //Map(x => x.Type);
+            Id(x => x.Id);
+            Map(x => x.Title).Unique();
+            References(x => x.Type).ForeignKey();
             Map(x => x.Scale);
             Map(x => x.Chords);
         }

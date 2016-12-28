@@ -61,7 +61,6 @@ namespace WindowsForms.Band
             this.txtBoxGroup = new System.Windows.Forms.TextBox();
             this.btnGroup = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
-            this.btnFontSelection = new System.Windows.Forms.Button();
             this.checkBoxChords = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRemoveEmpty = new System.Windows.Forms.Button();
@@ -75,7 +74,7 @@ namespace WindowsForms.Band
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lstSelectedSongs = new ExtendedListBox();
+            this.lstSelectedSongs = new WindowsForms.Band.Controls.ExtendedListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.timerBreaks = new System.Windows.Forms.Timer(this.components);
             this.timerProgress = new System.Windows.Forms.Timer(this.components);
@@ -228,7 +227,7 @@ namespace WindowsForms.Band
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(24, 19);
+            this.btnPrint.Location = new System.Drawing.Point(24, 38);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(118, 23);
             this.btnPrint.TabIndex = 2;
@@ -351,7 +350,6 @@ namespace WindowsForms.Band
             // 
             // groupBox
             // 
-            this.groupBox.Controls.Add(this.btnFontSelection);
             this.groupBox.Controls.Add(this.checkBoxChords);
             this.groupBox.Controls.Add(this.btnPrint);
             this.groupBox.Location = new System.Drawing.Point(6, 235);
@@ -359,17 +357,6 @@ namespace WindowsForms.Band
             this.groupBox.Size = new System.Drawing.Size(153, 133);
             this.groupBox.TabIndex = 18;
             this.groupBox.TabStop = false;
-            // 
-            // btnFontSelection
-            // 
-            this.btnFontSelection.Location = new System.Drawing.Point(24, 55);
-            this.btnFontSelection.Name = "btnFontSelection";
-            this.btnFontSelection.Size = new System.Drawing.Size(118, 23);
-            this.btnFontSelection.TabIndex = 4;
-            this.btnFontSelection.Tag = "";
-            this.btnFontSelection.Text = "Print Font";
-            this.btnFontSelection.UseVisualStyleBackColor = true;
-            this.btnFontSelection.Click += new System.EventHandler(this.btnFontSelection_Click);
             // 
             // checkBoxChords
             // 
@@ -593,7 +580,7 @@ namespace WindowsForms.Band
             this.btnAgreements.UseVisualStyleBackColor = true;
             this.btnAgreements.Click += new System.EventHandler(this.btnAgreements_Click);
             // 
-            // ProgressBandForm
+            // MainBandForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -620,7 +607,7 @@ namespace WindowsForms.Band
             this.Controls.Add(this.groupBox4);
             this.MaximumSize = new System.Drawing.Size(1250, 1000);
             this.MinimumSize = new System.Drawing.Size(1250, 500);
-            this.Name = "ProgressBandForm";
+            this.Name = "MainBandForm";
             this.Text = "Progress Band";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSongs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bnSongs)).EndInit();
@@ -678,7 +665,6 @@ namespace WindowsForms.Band
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Button btnRemoveEmpty;
         private System.Windows.Forms.FontDialog fontDialog;
-        private System.Windows.Forms.Button btnFontSelection;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;

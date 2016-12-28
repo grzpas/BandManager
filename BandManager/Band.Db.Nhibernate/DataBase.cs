@@ -20,7 +20,7 @@ namespace Band.Db.Nhibernate
             var config =
                 Fluently.Configure().Database(
                         MySQLConfiguration.Standard.ConnectionString(
-                            c => c.Server("localhost").Database("band").Username("maestro").Password("maestro"))).
+                            c => c.Server("localhost").Database("band").Username("maestro").Password("maestro")).ShowSql()).
                     Mappings(m => m.FluentMappings.AddFromAssembly(assembly));
             return config;
         }

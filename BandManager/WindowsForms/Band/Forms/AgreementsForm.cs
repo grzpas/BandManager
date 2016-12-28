@@ -8,14 +8,16 @@ namespace WindowsForms.Band.Forms
 {
     public partial class AgreementsForm : BandForm
     {
+        private readonly IRepository<Agreement, int> _agreementsRepository;
         private readonly BindingSource _bs = new BindingSource();
 
-        public AgreementsForm()
+        public AgreementsForm(IRepository<Agreement, int> agreementsRepository)
         {
+            _agreementsRepository = agreementsRepository;
             InitializeComponent();
             ConfigureDataGrid();
 
-            _bs.DataSource = null; //Todo: update
+            _bs.DataSource = agreementsRepository.GetAll();
             _bs.ResetBindings(false);
         }
  
@@ -120,17 +122,17 @@ namespace WindowsForms.Band.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            SaveChangesInDataBase();
+            UpdateRepository();
             Close();
         }
 
-        private void SaveChangesInDataBase()
+        private void UpdateRepository()
         {
             var list = (List<Agreement>)_bs.DataSource;
             
             foreach (var element in list)
             {
-                //Save or update element in repository
+                _agreementsRepository.Update(element);
             }
         }
 
@@ -144,7 +146,7 @@ namespace WindowsForms.Band.Forms
             var agreement = (Agreement)_bs.Current;
             if (agreement != null)
             {
-                //Delete agreement from repository
+                _agreementsRepository.Delete(agreement);
             }
         }
     }
