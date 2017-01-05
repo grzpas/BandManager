@@ -44,8 +44,9 @@
 
                 </DataGrid>
             </DockPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Background="DeepPink">
-                <TextBlock Text="Here we will have the text with accords" VerticalAlignment="Center"></TextBlock>
+            <StackPanel Grid.Row="1" Grid.Column="1" Background="DeepPink" Height="291" VerticalAlignment="Bottom">
+                <TextBlock Text="{Binding Title}" VerticalAlignment="Center"></TextBlock>
+                <Button Height="25" Click="ButtonBase_OnClick"></Button>
             </StackPanel>
         </Grid>
         <Grid Name="SongBlocks" Grid.Row="0" Grid.Column="1">

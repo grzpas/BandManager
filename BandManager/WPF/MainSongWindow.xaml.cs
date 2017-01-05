@@ -1,7 +1,4 @@
 ﻿using System.Windows;
-using Band.Db.Nhibernate;
-using Band.Domain;
-using Band.ViewModels;
 
 namespace Band
 {
@@ -13,6 +10,11 @@ namespace Band
         public MainSongWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
