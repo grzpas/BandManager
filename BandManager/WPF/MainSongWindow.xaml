@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="Main band window" Height="350" Width="525">
     <Grid Name="MainLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -20,13 +24,13 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="Blue">
+            <StackPanel  Grid.Row="0" Grid.ColumnSpan="2" Background="Blue">
                 <TextBlock Text="Here will be the grid buttons"></TextBlock>
             </StackPanel>
-            <DockPanel Grid.Row="1" Grid.Column="0" Background="Green">
-                <DataGrid Width="auto" Height="auto" AutoGenerateColumns="False" x:Name="SongDataGrid" ItemsSource="{Binding Songs}">
+            <DockPanel Margin="5" Grid.Row="1" Grid.Column="0" Background="Green">
+                <DataGrid Width="auto" Height="auto" AlternatingRowBackground="LightBlue" AutoGenerateColumns="False" x:Name="SongDataGrid" ItemsSource="{Binding Songs}" SelectedItem="{Binding SelectedSong}">
                     <DataGrid.Columns>
-                        <DataGridComboBoxColumn Header="Type" SelectedValueBinding="{Binding Id}" DisplayMemberPath="Name" SelectedValuePath="Id">
+                        <DataGridComboBoxColumn Width="*" Header="Type" SelectedValueBinding="{Binding Id}" DisplayMemberPath="Name" SelectedValuePath="Id">
                             <DataGridComboBoxColumn.ElementStyle>
                                 <Style TargetType="{x:Type ComboBox}">
                                     <Setter Property="ItemsSource" Value="{Binding Path=DataContext.SongTypes, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
@@ -38,16 +42,20 @@
                                 </Style>
                             </DataGridComboBoxColumn.EditingElementStyle>
                         </DataGridComboBoxColumn>
-                        <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
-                        <DataGridTextColumn Header="Scale" Binding="{Binding Scale}"/>
+                        <DataGridTextColumn Width="2*" Header="Title" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Width="*" Header="Scale" Binding="{Binding Scale}"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
             </DockPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Background="DeepPink" Height="291" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Title}" VerticalAlignment="Center"></TextBlock>
-                <Button Height="25" Click="ButtonBase_OnClick"></Button>
+            <StackPanel Grid.Row="1" Grid.Column="1" Background="DeepPink" Orientation="Vertical">
+
+               <TextBox Margin="5" Height="200" Text="{Binding SelectedSong}"></TextBox>
+               <Button Margin="5" Content="Transpose Up"></Button>
+               <Button Margin="5" Content="Transpose Down"></Button>
+
             </StackPanel>
+        
         </Grid>
         <Grid Name="SongBlocks" Grid.Row="0" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -61,5 +69,27 @@
                 <TextBlock Text="Here will be the buttons for block manipulation"></TextBlock>
             </StackPanel>
         </Grid>
+        <StatusBar Name="StatusBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Status Bar"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <ProgressBar Width="100" Height="20" Name="ProgressBar">
+                    <ProgressBar.Triggers>
+                        <EventTrigger RoutedEvent="ProgressBar.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ProgressBar" Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:10"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ProgressBar.Triggers>
+                </ProgressBar>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock>Online</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using Band.Db.Nhibernate;
 using Band.Domain;
@@ -25,7 +26,11 @@ namespace Band
                 songTypes = songTypeRepository.GetAll();
             }
 
-            var songViewModel = new SongViewModel(songs, songTypes);
+            var songViewModel = new SongViewModel
+            {
+                Songs = new ObservableCollection<Song>(songs),
+                SongTypes = new ObservableCollection<SongType>(songTypes)
+            };
 
             MainSongWindow songWindow = new MainSongWindow
             {

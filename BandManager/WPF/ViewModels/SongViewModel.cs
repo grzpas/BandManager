@@ -1,18 +1,33 @@
-﻿using System.Collections.Generic;
-using Band.Domain;
+﻿using Band.Domain;
 using System.Collections.ObjectModel;
 
 namespace Band.ViewModels
 {
-    public class SongViewModel
+    public class SongViewModel : BindableBase
     {
-        public SongViewModel(IEnumerable<Song> songs, IList<SongType> songTypes)
+        private ObservableCollection<Song> _songs;
+        private ObservableCollection<SongType> _songTypes;
+        private Song _selectedSong;
+
+        public Song SelectedSong
         {
-            Songs = new ObservableCollection<Song>(songs);
-            SongTypes = new ObservableCollection<SongType>(songTypes);
+            get { return _selectedSong; }
+            set
+            {
+                SetProperty(ref _selectedSong, value);
+            }
         }
 
-        public ObservableCollection<Song> Songs { get; }
-        public ObservableCollection<SongType> SongTypes { get; }
+        public ObservableCollection<Song> Songs
+        {
+            get { return _songs; }
+            set { SetProperty(ref _songs, value); }
+        }
+
+        public ObservableCollection<SongType> SongTypes
+        {
+            get { return _songTypes; }
+            set { SetProperty(ref _songTypes, value); }
+        }
     }
 }
