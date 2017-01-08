@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Band.Db.Nhibernate.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Band.Db.EntityFramework", "Band.Db.EntityFramework\Band.Db.EntityFramework.csproj", "{9D8FF801-BDE4-4982-BD56-9F4DD7F45DE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Band.BindingNavigator", "WPF\Band.BindingNavigator\Band.BindingNavigator.csproj", "{6DF85BDA-6918-4F30-92B6-1E673AB0158C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,18 @@ Global
 		{9D8FF801-BDE4-4982-BD56-9F4DD7F45DE4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9D8FF801-BDE4-4982-BD56-9F4DD7F45DE4}.Release|x86.ActiveCfg = Release|Any CPU
 		{9D8FF801-BDE4-4982-BD56-9F4DD7F45DE4}.Release|x86.Build.0 = Release|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Debug|x86.Build.0 = Debug|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Release|x86.ActiveCfg = Release|Any CPU
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,6 +187,7 @@ Global
 		{AF55F648-AB2F-4131-879A-048E6FFF9271} = {2FD2ACD2-3895-4859-B16B-115AF133D53E}
 		{695C85C0-1D2B-4EDA-A1F5-16F8A3502022} = {2FD2ACD2-3895-4859-B16B-115AF133D53E}
 		{2D60FF01-1F47-4407-8964-371B40E7C9B0} = {C8102ECE-1A45-489F-A105-01CCB42B46FC}
+		{6DF85BDA-6918-4F30-92B6-1E673AB0158C} = {C8102ECE-1A45-489F-A105-01CCB42B46FC}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

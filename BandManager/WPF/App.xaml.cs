@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
+using BandBindingNavigator;
 using Band.Db.Nhibernate;
 using Band.Domain;
 using Band.ViewModels;
@@ -30,14 +32,24 @@ namespace Band
             var songViewModel = new SongViewModel
             {
                 Songs = new ObservableCollection<Song>(songs),
-                SongTypes = new ObservableCollection<SongType>(songTypes)
+                SelectedSong = songs.FirstOrDefault(),
+                SongTypes = new ObservableCollection<SongType>(songTypes),
+                AddNewPersonCommand = new RelayCommand(obj=> {}, obj=> false),
+                DeletePersonCommand = new RelayCommand(obj=> {}, obj=> false),
+                SaveCommand = new RelayCommand(obj => {}, obj =>false)
             };
 
             MainSongWindow songWindow = new MainSongWindow
             {
-                DataContext = songViewModel
+                DataContext = songViewModel 
             };
             songWindow.Show();
+        }
+
+        private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message);
+            e.Handled = true;
         }
     }
 }

@@ -4,14 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Band"
+        xmlns:bnav="clr-namespace:BandBindingNavigator;assembly=Navigator"
         mc:Ignorable="d"
         Title="Main band window" Height="350" Width="525">
     <Window.Resources>
         <Style x:Key="SongTypes" TargetType="{x:Type ComboBox}">
             <Setter Property="ItemsSource" Value="{Binding Path=DataContext.SongTypes, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
         </Style>
+        <Style x:Key="Buttons" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
     </Window.Resources>
-    <Grid Name="MainLayout">
+    <Grid Name="MainLayout" Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -29,10 +33,14 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel  Grid.Row="0" Grid.ColumnSpan="2" Background="Blue">
-                <TextBlock Text="Here will be the grid buttons"></TextBlock>
-            </StackPanel>
-            <DockPanel Margin="5" Grid.Row="1" Grid.Column="0" Background="Green">
+            <bnav:BindingNavigator Grid.Row="0" Grid.ColumnSpan="2" Margin="2" Background="LightBlue"
+                            Name="Navigator"
+                            ItemsSource="{Binding Songs}"
+                            AddNewItemCommand="{Binding AddNewPersonCommand}"
+                            DeleteItemCommand="{Binding DeletePersonCommand}"
+                            SaveCommand="{Binding SaveCommand}"
+                            />
+            <DockPanel Margin="5" Grid.Row="1" Grid.Column="0">
                 <DataGrid Width="auto" Height="auto" AlternatingRowBackground="LightBlue" AutoGenerateColumns="False" x:Name="SongDataGrid" ItemsSource="{Binding Songs}" SelectedItem="{Binding SelectedSong}">
                     <DataGrid.Columns>
                         <DataGridComboBoxColumn ElementStyle="{StaticResource SongTypes}" EditingElementStyle="{StaticResource SongTypes}" Width="*" Header="Type" SelectedValueBinding="{Binding Id}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
@@ -42,11 +50,11 @@
 
                 </DataGrid>
             </DockPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Background="DeepPink" Orientation="Vertical">
-                <TextBox Margin="5" Height="200" Text="{Binding SelectedSong.Chords}"></TextBox>
-                <Button Margin="5" Content="Transpose Up"></Button>
-               <Button Margin="5" Content="Transpose Down"></Button>
-
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBox Margin="5" Height="200" Text="{Binding SelectedSong.Chords}" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <Button Style="{StaticResource Buttons}" Content="Transpose Up"></Button>
+                <Button Style="{StaticResource Buttons}" Content="Transpose Down"></Button>
+                <Button Style="{StaticResource Buttons}" Content="Save"></Button>
             </StackPanel>
         
         </Grid>
@@ -55,10 +63,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Background="Red">
+            <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock Text="Here will be the song blocks"></TextBlock>
             </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1" Background="Aqua">
+            <StackPanel Grid.Row="0" Grid.Column="1">
                 <TextBlock Text="Here will be the buttons for block manipulation"></TextBlock>
             </StackPanel>
         </Grid>

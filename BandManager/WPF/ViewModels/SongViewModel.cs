@@ -1,6 +1,6 @@
 ﻿using Band.Domain;
 using System.Collections.ObjectModel;
-using NHibernate.Mapping;
+using System.Windows.Input;
 
 namespace Band.ViewModels
 {
@@ -30,5 +30,9 @@ namespace Band.ViewModels
             get { return _songTypes; }
             set { SetProperty(ref _songTypes, value); }
         }
+
+        public ICommand AddNewPersonCommand { get; set; }
+        public ICommand DeletePersonCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
     }
 }
