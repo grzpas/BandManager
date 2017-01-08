@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Band.Db.Nhibernate.Mappings;
 using Band.Domain;
 using NUnit.Framework;
 
@@ -53,6 +48,14 @@ namespace Band.Db.Nhibernate.Tests
                     Type = rockSongType,
                     Chords = "F B d B F",
                     Scale = "F"
+                });
+
+                songRepository.Create(new Song()
+                {
+                    Title = "Zostańmy razem",
+                    Type = rockSongType,
+                    Chords = "B Es d B F",
+                    Scale = "B"
                 });
 
                 var agreement = new Agreement()

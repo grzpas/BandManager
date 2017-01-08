@@ -37,5 +37,10 @@
             get { return _chords; }
             set { SetProperty(ref _chords, value); }
         }
+
+        public override string ToString()
+        {
+            return Chords;
+        }
     }
 }

@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Band"
         mc:Ignorable="d"
         Title="Main band window" Height="350" Width="525">
+    <Window.Resources>
+        <Style x:Key="SongTypes" TargetType="{x:Type ComboBox}">
+            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.SongTypes, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+        </Style>
+    </Window.Resources>
     <Grid Name="MainLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"></RowDefinition>
@@ -30,18 +35,7 @@
             <DockPanel Margin="5" Grid.Row="1" Grid.Column="0" Background="Green">
                 <DataGrid Width="auto" Height="auto" AlternatingRowBackground="LightBlue" AutoGenerateColumns="False" x:Name="SongDataGrid" ItemsSource="{Binding Songs}" SelectedItem="{Binding SelectedSong}">
                     <DataGrid.Columns>
-                        <DataGridComboBoxColumn Width="*" Header="Type" SelectedValueBinding="{Binding Id}" DisplayMemberPath="Name" SelectedValuePath="Id">
-                            <DataGridComboBoxColumn.ElementStyle>
-                                <Style TargetType="{x:Type ComboBox}">
-                                    <Setter Property="ItemsSource" Value="{Binding Path=DataContext.SongTypes, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-                                </Style>
-                            </DataGridComboBoxColumn.ElementStyle>
-                            <DataGridComboBoxColumn.EditingElementStyle>
-                                <Style TargetType="{x:Type ComboBox}">
-                                    <Setter Property="ItemsSource" Value="{Binding Path=DataContext.SongTypes, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-                                </Style>
-                            </DataGridComboBoxColumn.EditingElementStyle>
-                        </DataGridComboBoxColumn>
+                        <DataGridComboBoxColumn ElementStyle="{StaticResource SongTypes}" EditingElementStyle="{StaticResource SongTypes}" Width="*" Header="Type" SelectedValueBinding="{Binding Id}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
                         <DataGridTextColumn Width="2*" Header="Title" Binding="{Binding Title}"/>
                         <DataGridTextColumn Width="*" Header="Scale" Binding="{Binding Scale}"/>
                     </DataGrid.Columns>
@@ -49,9 +43,8 @@
                 </DataGrid>
             </DockPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Background="DeepPink" Orientation="Vertical">
-
-               <TextBox Margin="5" Height="200" Text="{Binding SelectedSong}"></TextBox>
-               <Button Margin="5" Content="Transpose Up"></Button>
+                <TextBox Margin="5" Height="200" Text="{Binding SelectedSong.Chords}"></TextBox>
+                <Button Margin="5" Content="Transpose Up"></Button>
                <Button Margin="5" Content="Transpose Down"></Button>
 
             </StackPanel>

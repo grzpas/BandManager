@@ -1,5 +1,6 @@
 ﻿using Band.Domain;
 using System.Collections.ObjectModel;
+using NHibernate.Mapping;
 
 namespace Band.ViewModels
 {
