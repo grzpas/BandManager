@@ -58,6 +58,14 @@ namespace Band.Db.Nhibernate.Tests
                     Scale = "B"
                 });
 
+                songRepository.Create(new Song()
+                {
+                    Title = "Kocham Cie",
+                    Type = rockSongType,
+                    Chords = "G D a D C G",
+                    Scale = "G"
+                });
+
                 var agreement = new Agreement()
                 {
                     Name = "Agnieszka Pasternak",

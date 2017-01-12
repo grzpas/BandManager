@@ -18,7 +18,7 @@
                                 <Image Height="16" Source="/Navigator;component/Images/Back.png" />
                             </Button>
                             <Rectangle Fill="Gray" Height="16" Width="1" />
-                            <TextBox Width="100" Margin="2,0" Text="{Binding CurrentItemIndex,  RelativeSource={RelativeSource TemplatedParent}}" />
+                            <TextBox Width="100" Margin="2,0" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding CurrentItemIndex,  RelativeSource={RelativeSource TemplatedParent}}" />
                             <TextBlock Margin="2,0" VerticalAlignment="Center" Text="{Binding ItemsCount, StringFormat={}of {0}, RelativeSource={RelativeSource TemplatedParent}}"/>
                             <Rectangle Fill="Gray" Height="16" Width="1" />
                             <Button Command="{Binding Commands.NextItemCommand, RelativeSource={RelativeSource TemplatedParent}}" Margin="2,0">
