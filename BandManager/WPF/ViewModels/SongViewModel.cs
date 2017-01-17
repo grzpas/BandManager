@@ -8,14 +8,31 @@ namespace Band.ViewModels
     {
         private ObservableCollection<Song> _songs;
         private ObservableCollection<SongType> _songTypes;
-        private Song _selectedSong;
+        private ObservableCollection<Song> _selectedSongs;
+        private Song _firstSelectedSong;
 
-        public Song SelectedSong
+        public SongViewModel()
         {
-            get { return _selectedSong; }
+            _songTypes = new ObservableCollection<SongType>();
+            _songs = new ObservableCollection<Song>();
+            _selectedSongs = new ObservableCollection<Song>();
+        }
+
+        public ObservableCollection<Song> SelectedSongs
+        {
+            get { return _selectedSongs; }
             set
             {
-                SetProperty(ref _selectedSong, value);
+                SetProperty(ref _selectedSongs, value);
+            }
+        }
+
+        public Song FirstSelectedSong
+        {
+            get { return _firstSelectedSong; }
+            set
+            {
+                SetProperty(ref _firstSelectedSong, value);
             }
         }
 
@@ -31,8 +48,9 @@ namespace Band.ViewModels
             set { SetProperty(ref _songTypes, value); }
         }
 
-        public ICommand AddNewPersonCommand { get; set; }
-        public ICommand DeletePersonCommand { get; set; }
-        public ICommand SaveCommand { get; set; }
+        public ICommand AddNewSongCommand { get; set; }
+        public ICommand DeleteSongCommand { get; set; }
+        public ICommand SaveSongsCommand { get; set; }
+        public ICommand MoveToSongBlocksCommand { get; set; }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Band.Domain
+﻿using System;
+
+namespace Band.Domain
 {
-    public class Song : BindableBase
+    public class Song : BindableBase, ICloneable
     {
         private int _id;
         private SongType _type;
@@ -41,6 +43,11 @@
         public override string ToString()
         {
             return Chords;
+        }
+
+        public virtual object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

@@ -39,21 +39,21 @@
                             ItemsSource="{Binding Songs}"
                             AddNewItemCommand="{Binding AddNewPersonCommand}"
                             DeleteItemCommand="{Binding DeletePersonCommand}"
-                            SaveCommand="{Binding SaveCommand}"
+                            SaveCommand="{Binding SaveSongsCommand}"
                             />
-                <Button Style="{StaticResource Buttons}" Grid.Row="0" Grid.Column="1" Content=">>>>"/>
+                <Button Style="{StaticResource Buttons}" Grid.Row="0" Grid.Column="1" Content=">>>>" Command="{Binding MoveToSongBlocksCommand}" CommandTarget="{Binding ElementName=ChordsTextBox, Path=Text, Mode=OneWay}"/>
                     <DockPanel Margin="5" Grid.Row="1" Grid.Column="0">
-                <DataGrid Width="auto" Height="auto" AlternatingRowBackground="LightBlue" AutoGenerateColumns="False" x:Name="SongDataGrid" ItemsSource="{Binding Songs}" SelectedItem="{Binding SelectedSong}">
+                <DataGrid Width="auto" Height="auto" AlternatingRowBackground="LightBlue" AutoGenerateColumns="False" x:Name="SongDataGrid" ItemsSource="{Binding Songs}" SelectedItem="{Binding FirstSelectedSong}">
                     <DataGrid.Columns>
-                        <DataGridComboBoxColumn ElementStyle="{StaticResource SongTypes}" EditingElementStyle="{StaticResource SongTypes}" Width="*" Header="Type" SelectedValueBinding="{Binding Id}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
-                        <DataGridTextColumn Width="2*" Header="Title" Binding="{Binding Title}"/>
+                            <DataGridComboBoxColumn ElementStyle="{StaticResource SongTypes}" EditingElementStyle="{StaticResource SongTypes}" Width="*" Header="Type" SelectedValueBinding="{Binding Type.Id}" DisplayMemberPath="Name"  SelectedValuePath="Id"/>
+                            <DataGridTextColumn Width="2*" Header="Title" Binding="{Binding Title}"/>
                         <DataGridTextColumn Width="*" Header="Scale" Binding="{Binding Scale}"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
             </DockPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-                <TextBox Margin="5" Height="200" Text="{Binding SelectedSong.Chords}" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <TextBox Name="ChordsTextBox" Margin="5" Height="200" Text="{Binding FirstSelectedSong.Chords}" TextWrapping="Wrap" AcceptsReturn="True"/>
                 <Button Style="{StaticResource Buttons}" Content="Transpose Up"/>
                 <Button Style="{StaticResource Buttons}" Content="Transpose Down"/>
                 <Button Style="{StaticResource Buttons}" Content="Save"/>
@@ -67,8 +67,19 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Row="0" Grid.Column="0">
-                        <TextBox Name="SongBlocksTextBox"/>
-                    </DockPanel>
+                    <ListBox Name="SongBlocksListBox" ItemsSource="{Binding SelectedSongs}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}"/> 
+                                    <TextBlock Text="  ("/>
+                                    <TextBlock Text="{Binding Scale}"/>
+                                    <TextBlock Text=")"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
                 <StackPanel Grid.Row="0" Grid.Column="1">
                     <Button Style="{StaticResource Buttons}" Content="Move up"/>
                     <Button Style="{StaticResource Buttons}" Content="Move down"/>

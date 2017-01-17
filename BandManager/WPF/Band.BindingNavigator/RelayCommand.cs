@@ -10,25 +10,25 @@ namespace BandBindingNavigator
 
         public RelayCommand(Action<object> relayedMethod)
         {
-            this._relayedMethod = relayedMethod;
+            _relayedMethod = relayedMethod;
         }
 
         public RelayCommand(Action<object> relayedMethod, Func<object, bool> relayedCanExecute)
             : this(relayedMethod)
         {
-            this._relayedCanExecute = relayedCanExecute;
+            _relayedCanExecute = relayedCanExecute;
         }
 
         public bool CanExecute(object parameter)
         {
-            if (this._relayedMethod == null)
+            if (_relayedMethod == null)
             {
                 return false;
             }
 
-            if (this._relayedCanExecute != null)
+            if (_relayedCanExecute != null)
             {
-                return this._relayedCanExecute.Invoke(parameter);
+                return _relayedCanExecute.Invoke(parameter);
             }
 
             return true;

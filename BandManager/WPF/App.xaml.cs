@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
+using Band.Commands;
 using BandBindingNavigator;
-using Band.Db.Nhibernate;
 using Band.Domain;
 using Band.ViewModels;
+using Band.Db.EntityFramework;
 
 namespace Band
 {
@@ -19,31 +19,31 @@ namespace Band
         {
             base.OnStartup(e);
 
-            IList<Song> songs = new List<Song>();
-            IList<SongType> songTypes = new List<SongType>();
-            using (var session = DataBase.CreateSessionFactory().OpenSession())
+            using (var dbContext = new BandDbContext())
             {
-                var songRepository = new NHibernateRepository<Song, int>(session);
-                songs = songRepository.GetAll();
-                var songTypeRepository = new NHibernateRepository<SongType, int>(session);
-                songTypes = songTypeRepository.GetAll();
+                var songRepository = new EntityFrameworkRepository<Song, int>(dbContext);
+                var songs = songRepository.GetAll();
+                var songTypeRepository = new EntityFrameworkRepository<SongType, int>(dbContext);
+                var songTypes = songTypeRepository.GetAll();
+
+                var songViewModel = new SongViewModel
+                {
+                    Songs = new ObservableCollection<Song>(songs),
+                    FirstSelectedSong = songs.FirstOrDefault(),
+                    SongTypes = new ObservableCollection<SongType>(songTypes),
+                    AddNewSongCommand = new RelayCommand(obj => { }, obj => true),
+                    DeleteSongCommand = new RelayCommand(obj => { }, obj => false),
+                    SaveSongsCommand = new RelayCommand(obj => { }, obj => false)
+                };
+                songViewModel.MoveToSongBlocksCommand = new MoveToSongBlocksCommand(songViewModel.SelectedSongs);
+                songViewModel.SaveSongsCommand = new SaveSongsCommand(songRepository);
+
+                MainSongWindow songWindow = new MainSongWindow
+                {
+                    DataContext = songViewModel
+                };
+                songWindow.Show();
             }
-
-            var songViewModel = new SongViewModel
-            {
-                Songs = new ObservableCollection<Song>(songs),
-                SelectedSong = songs.FirstOrDefault(),
-                SongTypes = new ObservableCollection<SongType>(songTypes),
-                AddNewPersonCommand = new RelayCommand(obj=> {}, obj=> false),
-                DeletePersonCommand = new RelayCommand(obj=> {}, obj=> false),
-                SaveCommand = new RelayCommand(obj => {}, obj =>false)
-            };
-
-            MainSongWindow songWindow = new MainSongWindow
-            {
-                DataContext = songViewModel 
-            };
-            songWindow.Show();
         }
 
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
